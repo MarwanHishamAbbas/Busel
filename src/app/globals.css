@@ -5,7 +5,7 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --foreground: 0 0 0%;
 
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
@@ -32,7 +32,7 @@
     --input: 214.3 31.8% 91.4%;
     --ring: 222.2 84% 4.9%;
 
-    --radius: 0.7rem;
+    --radius: 1rem;
   }
 
   .dark {
@@ -73,8 +73,11 @@
   body {
     @apply bg-background text-foreground;
   }
+  /* main {
+    @apply space-y-10 md:space-y-20;
+  } */
   section {
-    @apply py-14 lg:py-24;
+    @apply py-10 lg:py-20;
   }
   /* Utiliy classes */
 }

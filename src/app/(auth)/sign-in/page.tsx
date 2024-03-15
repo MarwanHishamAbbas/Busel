@@ -15,7 +15,7 @@ import { ZodError } from "zod"
 import { useRouter } from "next/navigation"
 import { AuthValidator, TAuthValidator } from "@/lib/validators/auth-validator"
 
-const SignUpPage = () => {
+const SignInPage = () => {
   const {
     register,
     handleSubmit,
@@ -26,25 +26,25 @@ const SignUpPage = () => {
 
   const router = useRouter()
 
-  const { mutate, isLoading } = trpc.auth.createPayloadUser.useMutation({
+  const { mutate, isLoading } = trpc.auth.signIn.useMutation({
     onError: (err) => {
-      if (err.data?.code === "CONFLICT") {
-        toast.error("This email is already in use. Sign in instead?")
+      if (err.data?.code === "UNAUTHORIZED") {
+        toast.error("Invalid Email or Password")
 
         return
       }
 
       if (err instanceof ZodError) {
         toast.error(err.issues[0].message)
-
         return
       }
 
       toast.error("Something went wrong. Please try again.")
     },
-    onSuccess: ({ sentToEmail }) => {
-      toast.success(`You succesfully signed up, Welcome ${sentToEmail}.`)
-      router.push("/verify-email")
+    onSuccess: () => {
+      toast.success(`You succesfully logged in, Welcome back.`)
+      router.push("/")
+      router.refresh()
     },
   })
 
@@ -58,7 +58,7 @@ const SignUpPage = () => {
         <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
           <div className="flex flex-col items-center space-y-2 text-center">
             <h1 className="text-2xl font-semibold tracking-tight">
-              Create an account
+              Login to Busel
             </h1>
 
             <Link
@@ -66,9 +66,9 @@ const SignUpPage = () => {
                 variant: "link",
                 className: "gap-1.5",
               })}
-              href="/sign-in"
+              href="/sign-up"
             >
-              Already have an account? Sign-in
+              Don&apos;t have an account? Sign up
               <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
@@ -113,7 +113,7 @@ const SignUpPage = () => {
                   {isLoading && (
                     <Loader2 className="animate-spin w-6 h-6 mr-2" />
                   )}
-                  Sign up
+                  Login
                 </Button>
               </div>
             </form>
@@ -124,4 +124,4 @@ const SignUpPage = () => {
   )
 }
 
-export default SignUpPage
+export default SignInPage

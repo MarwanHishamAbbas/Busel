@@ -3,8 +3,13 @@ import { buttonVariants } from "../../ui/button"
 import { ArrowRight } from "lucide-react"
 import { NAV_LINKS } from "@/data/links"
 import { NavMenu } from "./NavMenu"
+import { getServerSideUser } from "@/lib/payload-utils"
+import { cookies } from "next/headers"
+import UserAccountNav from "./UserAccountNav"
 
-const Navbar = ({}) => {
+const Navbar = async ({}) => {
+  const nextCookies = cookies()
+  const { user } = await getServerSideUser(nextCookies)
   return (
     <header className="bg-background h-20 flex items-center fixed inset-0 z-50">
       <nav className="container flex items-center justify-between">
@@ -22,16 +27,20 @@ const Navbar = ({}) => {
             </Link>
           ))}
         </ul>
-        <Link
-          href="/sign-up"
-          className={buttonVariants({
-            size: "lg",
-            className: "hidden lg:flex",
-          })}
-        >
-          Get Started
-          <ArrowRight className="ml-2 w-5 h-5" />
-        </Link>
+        {user ? (
+          <UserAccountNav user={user} />
+        ) : (
+          <Link
+            href="/sign-up"
+            className={buttonVariants({
+              size: "lg",
+              className: "hidden lg:flex",
+            })}
+          >
+            Get Started
+            <ArrowRight className="ml-2 w-5 h-5" />
+          </Link>
+        )}
         <div className="lg:hidden">
           <NavMenu />
         </div>
