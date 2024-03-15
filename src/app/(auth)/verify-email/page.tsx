@@ -1,4 +1,5 @@
-import VerifyEmail from "@/components/email/VerifyEmail"
+import { buttonVariants } from "@/components/ui/button"
+import Link from "next/link"
 import { FC } from "react"
 
 interface VerifyEmailPageProps {
@@ -10,30 +11,18 @@ interface VerifyEmailPageProps {
 const VerifyEmailPage: FC<VerifyEmailPageProps> = ({ searchParams }) => {
   const token = searchParams.token
   const toEmail = searchParams.to
-  console.log(token)
   return (
     <div className="container relative flex pt-20 flex-col items-center justify-center lg:px-0">
       <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
-        {token && typeof token === "string" ? (
-          <div className="grid gap-6">
-            <VerifyEmail token={token} />
-          </div>
-        ) : (
-          <div className="flex h-full flex-col items-center justify-center space-y-1">
-            <h3 className="font-semibold text-2xl">Check your email</h3>
-
-            {toEmail ? (
-              <p className="text-muted-foreground text-center">
-                We&apos;ve sent a verification link to{" "}
-                <span className="font-semibold">{toEmail}</span>.
-              </p>
-            ) : (
-              <p className="text-muted-foreground text-center">
-                We&apos;ve sent a verification link to your email.
-              </p>
-            )}
-          </div>
-        )}
+        <div className="flex h-full flex-col items-center justify-center">
+          <h3 className="font-semibold text-2xl">You&apos;re all set!</h3>
+          <Link
+            className={buttonVariants({ className: "mt-4" })}
+            href="/sign-in"
+          >
+            Sign in
+          </Link>
+        </div>
       </div>
     </div>
   )

@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { cn } from "@/lib/utils"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, Loader2 } from "lucide-react"
 import Link from "next/link"
 import { useForm } from "react-hook-form"
 
@@ -43,8 +43,8 @@ const Page = () => {
       toast.error("Something went wrong. Please try again.")
     },
     onSuccess: ({ sentToEmail }) => {
-      toast.success(`Verification email sent to ${sentToEmail}.`)
-      router.push("/verify-email?to=" + sentToEmail)
+      toast.success(`You succesfully signed up, Welcome ${sentToEmail}.`)
+      router.push("/verify-email")
     },
   })
 
@@ -109,7 +109,12 @@ const Page = () => {
                   )}
                 </div>
 
-                <Button>Sign up</Button>
+                <Button disabled={isLoading}>
+                  {isLoading && (
+                    <Loader2 className="animate-spin w-6 h-6 mr-2" />
+                  )}
+                  Sign up
+                </Button>
               </div>
             </form>
           </div>
