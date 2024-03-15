@@ -23,14 +23,14 @@ const Navbar = ({}) => {
           ))}
         </ul>
         <Link
-          href="/sign-in"
+          href="/sign-up"
           className={buttonVariants({
             size: "lg",
             className: "hidden lg:flex",
           })}
         >
           Get Started
-          <ArrowRight className="ml-2" />
+          <ArrowRight className="ml-2 w-5 h-5" />
         </Link>
         <div className="lg:hidden">
           <NavMenu />

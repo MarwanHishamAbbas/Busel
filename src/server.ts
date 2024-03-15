@@ -43,11 +43,11 @@ const start = async () => {
     return
   }
 
-  app.use((req, res) => nextHandler(req, res))
   app.use(
     "/api/trpc",
     trpcExpress.createExpressMiddleware({ router: appRouter, createContext })
   )
+  app.use((req, res) => nextHandler(req, res))
 
   nextApp.prepare().then(() => {
     payload.logger.info("Next.js started")
