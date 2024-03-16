@@ -1,7 +1,5 @@
 import HeroCTA from "@/components/home/HeroCTA"
 import MostPopular from "@/components/home/MostPopular"
-import { Button } from "@/components/ui/button"
-import { ShoppingBag, ShoppingBagIcon } from "lucide-react"
 import { FC } from "react"
 
 interface HomePageProps {}

@@ -14,7 +14,7 @@ const MostPopular: FC<MostPopularProps> = ({}) => {
           Browse through some of my Most Popular Products!
         </p>
       </div>
-      <ProductsList />
+      <ProductsList query={{ category: "UI", limit: 3, sort: "asc" }} />
     </section>
   )
 }

@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { FC, useEffect, useState } from "react"
 import {
   Card,
   CardContent,
@@ -9,9 +9,26 @@ import {
 import Image from "next/image"
 import { Button } from "../ui/button"
 import { ExternalLink } from "lucide-react"
-interface ProductCardProps {}
+import { Product } from "@/payload-types"
+import { Skeleton } from "../ui/skeleton"
+import ProductPlaceholder from "./ProductPlaceholder"
+interface ProductCardProps {
+  product: Product | null
+  index: number
+}
 
-const ProductCard: FC<ProductCardProps> = ({}) => {
+const ProductCard: FC<ProductCardProps> = ({ product, index }) => {
+  const [isVisible, setIsVisible] = useState<boolean>(false)
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsVisible(true)
+    }, index * 75)
+
+    return () => clearTimeout(timer)
+  }, [index])
+
+  if (!product || !isVisible) return <ProductPlaceholder />
   return (
     <Card>
       <CardHeader className="space-y-4">
@@ -24,15 +41,13 @@ const ProductCard: FC<ProductCardProps> = ({}) => {
             alt="Product"
           />
           <span className="absolute top-4 right-4 bg-background px-4 py-2 rounded-3xl font-medium">
-            $46
+            ${product?.price}
           </span>
         </div>
-        <CardTitle className="font-medium">Framer Template</CardTitle>
+        <CardTitle className="font-medium">{product?.name}</CardTitle>
       </CardHeader>
       <CardContent>
-        <p className="opacity-40">
-          Modern a Minimal and Clean Personal Portfolio Template for Framer.
-        </p>
+        <p className="opacity-40">{product?.description}</p>
       </CardContent>
       <CardFooter className="gap-4 flex-col xl:flex-row">
         <Button variant="outline" size="lg" className="w-full">
