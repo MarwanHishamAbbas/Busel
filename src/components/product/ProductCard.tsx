@@ -7,11 +7,12 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import Image from "next/image"
-import { Button } from "../ui/button"
-import { ExternalLink } from "lucide-react"
-import { Product } from "@/payload-types"
-import { Skeleton } from "../ui/skeleton"
+import { buttonVariants } from "../ui/button"
+
+import { Media, Product } from "@/payload-types"
 import ProductPlaceholder from "./ProductPlaceholder"
+import Link from "next/link"
+
 interface ProductCardProps {
   product: Product | null
   index: number
@@ -29,16 +30,26 @@ const ProductCard: FC<ProductCardProps> = ({ product, index }) => {
   }, [index])
 
   if (!product || !isVisible) return <ProductPlaceholder />
+  const validURLs = product.images
+    .map(({ image }) => (typeof image === "string" ? image : image.url))
+    .filter(Boolean) as string[]
+  console.log(validURLs)
+
+  console.log(
+    typeof product.product_files === "object" && product.product_files.url
+  )
+
   return (
     <Card>
       <CardHeader className="space-y-4">
         <div className="relative">
           <Image
-            src="/product.png"
+            src={`${process.env.NEXT_PUBLIC_SERVER_URL}/media/samuel-scalzo-xyuYk9oLA8I-unsplash.jpg`}
             priority
             width={500}
             height={500}
             alt="Product"
+            className="rounded-2xl"
           />
           <span className="absolute top-4 right-4 bg-background px-4 py-2 rounded-3xl font-medium">
             ${product?.price}
@@ -50,13 +61,29 @@ const ProductCard: FC<ProductCardProps> = ({ product, index }) => {
         <p className="opacity-40">{product?.description}</p>
       </CardContent>
       <CardFooter className="gap-4 flex-col xl:flex-row">
-        <Button variant="outline" size="lg" className="w-full">
+        <Link
+          href={`/product/${product.id}`}
+          className={buttonVariants({
+            size: "lg",
+            variant: "outline",
+            className: "w-full",
+          })}
+        >
           View Product
-        </Button>
-        <Button variant="outline" size="lg" className="w-full  ">
-          View Demo
-          <ExternalLink className="w-5 h-5 ml-2" />
-        </Button>
+        </Link>
+
+        {product.demo && (
+          <Link
+            href={`/product/${product.id}`}
+            className={buttonVariants({
+              size: "lg",
+              variant: "outline",
+              className: "w-full",
+            })}
+          >
+            View Demo
+          </Link>
+        )}
       </CardFooter>
     </Card>
   )

@@ -24,7 +24,7 @@ export default buildConfig({
     user: "users",
     bundler: webpackBundler(),
     meta: {
-      titleSuffix: "- Busell",
+      titleSuffix: "- Busel",
     },
   },
   rateLimit: {

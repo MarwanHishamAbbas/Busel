@@ -49,6 +49,7 @@ export interface Product {
   description?: string | null;
   price: number;
   category: 'UI' | 'Icons';
+  demo?: string | null;
   product_files: string | ProductFile;
   approvedForSale?: ('pending' | 'approved' | 'denied') | null;
   priceId?: string | null;

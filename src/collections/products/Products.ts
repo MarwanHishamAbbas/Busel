@@ -122,6 +122,11 @@ export const Products: CollectionConfig = {
       required: true,
     },
     {
+      name: "demo",
+      label: "Demo Link",
+      type: "text",
+    },
+    {
       name: "product_files",
       label: "Product file(s)",
       type: "relationship",

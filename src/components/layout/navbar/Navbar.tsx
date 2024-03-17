@@ -31,7 +31,7 @@ const Navbar = async ({}) => {
           <UserAccountNav user={user} />
         ) : (
           <Link
-            href="/sign-up"
+            href="/sign-in"
             className={buttonVariants({
               size: "lg",
               className: "hidden lg:flex",
