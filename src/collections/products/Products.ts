@@ -118,7 +118,7 @@ export const Products: CollectionConfig = {
       name: "category",
       label: "Category",
       type: "select",
-      options: ["UI", "Icons"],
+      options: ["UI", "Icons", "Templates"],
       required: true,
     },
 

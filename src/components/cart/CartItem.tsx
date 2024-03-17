@@ -48,7 +48,7 @@ const CartItem = ({ product }: { product: Product }) => {
         </div>
 
         <div className="flex flex-col space-y-1 font-medium">
-          <span className="ml-auto line-clamp-1 text-sm">{product.price}</span>
+          <span className="ml-auto line-clamp-1 text-sm">${product.price}</span>
         </div>
       </div>
     </div>

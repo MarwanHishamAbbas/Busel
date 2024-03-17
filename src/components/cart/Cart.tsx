@@ -66,11 +66,11 @@ const Cart = () => {
                 </div>
                 <div className="flex">
                   <span className="flex-1">Transaction Fee</span>
-                  <span>{fee}</span>
+                  <span>${fee}</span>
                 </div>
                 <div className="flex">
                   <span className="flex-1">Total</span>
-                  <span>{cartTotal + fee}</span>
+                  <span>${cartTotal + fee}</span>
                 </div>
               </div>
 

@@ -11,7 +11,7 @@ const Navbar = async ({}) => {
   const nextCookies = cookies()
   const { user } = await getServerSideUser(nextCookies)
   return (
-    <header className="bg-background h-20 flex items-center fixed left-0 top-0 right-0 z-50">
+    <header className="bg-background h-20 flex items-center fixed left-0 top-0 right-0 z-50 border-b-2 shadow-md">
       <nav className="container flex items-center justify-between">
         <Link href="/" className="text-3xl lg:text-5xl font-bold">
           Busel
