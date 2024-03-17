@@ -3,7 +3,12 @@ import "./globals.css"
 import Providers from "@/components/provider/Providers"
 import Navbar from "@/components/layout/navbar/Navbar"
 import { Toaster } from "sonner"
+import { Metadata } from "next"
 const poppins = Poppins({ subsets: ["latin"], weight: ["400", "500", "700"] })
+
+export const metadata: Metadata = {
+  title: "Busel | Homepage",
+}
 
 export default function RootLayout({
   children,

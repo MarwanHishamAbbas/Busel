@@ -9,7 +9,7 @@ import {
 import Image from "next/image"
 import { buttonVariants } from "../ui/button"
 
-import { Media, Product } from "@/payload-types"
+import { Product } from "@/payload-types"
 import ProductPlaceholder from "./ProductPlaceholder"
 import Link from "next/link"
 
@@ -35,16 +35,12 @@ const ProductCard: FC<ProductCardProps> = ({ product, index }) => {
     .filter(Boolean) as string[]
   console.log(validURLs)
 
-  console.log(
-    typeof product.product_files === "object" && product.product_files.url
-  )
-
   return (
     <Card>
       <CardHeader className="space-y-4">
         <div className="relative">
           <Image
-            src={`${process.env.NEXT_PUBLIC_SERVER_URL}/media/samuel-scalzo-xyuYk9oLA8I-unsplash.jpg`}
+            src={validURLs[0]}
             priority
             width={500}
             height={500}
@@ -74,6 +70,7 @@ const ProductCard: FC<ProductCardProps> = ({ product, index }) => {
 
         {product.demo && (
           <Link
+            target="_blank"
             href={`/product/${product.id}`}
             className={buttonVariants({
               size: "lg",
