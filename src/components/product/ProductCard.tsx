@@ -13,6 +13,7 @@ import { Product } from "@/payload-types"
 import ProductPlaceholder from "./ProductPlaceholder"
 import Link from "next/link"
 import { ShoppingCart } from "lucide-react"
+import { useCart } from "@/hooks/use-cart"
 
 interface ProductCardProps {
   product: Product | null
@@ -21,6 +22,7 @@ interface ProductCardProps {
 
 const ProductCard: FC<ProductCardProps> = ({ product, index }) => {
   const [isVisible, setIsVisible] = useState<boolean>(false)
+  const { addItem } = useCart()
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -69,7 +71,12 @@ const ProductCard: FC<ProductCardProps> = ({ product, index }) => {
           View Product
         </Link>
 
-        <Button size="lg" variant="outline" className="w-full">
+        <Button
+          onClick={() => addItem(product)}
+          size="lg"
+          variant="outline"
+          className="w-full"
+        >
           Add to Cart
           <ShoppingCart className="ml-2 w-5 h-5" />
         </Button>
