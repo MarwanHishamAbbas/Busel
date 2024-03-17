@@ -8,7 +8,7 @@ const HeroCTA: FC<HeroCTAProps> = ({}) => {
   return (
     <section className="bg-foreground text-background text-center h-[75vh] grid place-content-center">
       <div className="container space-y-6">
-        <h1 className="text-4xl md:text-6xl font-medium bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 bg-opacity-50">
+        <h1 className="text-4xl sm:text-5xl md:text-7xl font-medium bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 bg-opacity-50">
           Empower Your Business: <br /> Create and Sell with Busell
         </h1>
         <p className="md:text-lg opacity-50">
