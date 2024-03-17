@@ -12,8 +12,7 @@ import { Button, buttonVariants } from "../ui/button"
 import { Product } from "@/payload-types"
 import ProductPlaceholder from "./ProductPlaceholder"
 import Link from "next/link"
-import { ExternalLink, ShoppingCart } from "lucide-react"
-import { useRouter } from "next/navigation"
+import { ShoppingCart } from "lucide-react"
 
 interface ProductCardProps {
   product: Product | null
@@ -22,7 +21,6 @@ interface ProductCardProps {
 
 const ProductCard: FC<ProductCardProps> = ({ product, index }) => {
   const [isVisible, setIsVisible] = useState<boolean>(false)
-  const router = useRouter()
 
   useEffect(() => {
     const timer = setTimeout(() => {

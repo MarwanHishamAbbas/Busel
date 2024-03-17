@@ -12,12 +12,13 @@ import {
 import Link from "next/link"
 import { useAuth } from "@/hooks/use-auth"
 import { ShoppingCart, UserIcon } from "lucide-react"
+import Cart from "@/components/cart/Cart"
 
 const UserAccountNav = ({ user }: { user: User }) => {
   const { signOut } = useAuth()
   const total = 0
   return (
-    <div className="space-x-4">
+    <div className="flex items-center gap-4">
       <DropdownMenu>
         <DropdownMenuTrigger asChild className="overflow-visible">
           <Button variant="outline" size="icon" className="relative">
@@ -48,12 +49,8 @@ const UserAccountNav = ({ user }: { user: User }) => {
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
-      <Button variant="outline" size="icon" className="relative">
-        <span className="absolute -top-3 -right-3 text-primary-foreground bg-primary w-6 h-6 rounded-full grid place-content-center">
-          {total}
-        </span>
-        <ShoppingCart />
-      </Button>
+
+      <Cart />
     </div>
   )
 }
