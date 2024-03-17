@@ -121,11 +121,7 @@ export const Products: CollectionConfig = {
       options: ["UI", "Icons"],
       required: true,
     },
-    {
-      name: "demo",
-      label: "Demo Link",
-      type: "text",
-    },
+
     {
       name: "product_files",
       label: "Product file(s)",

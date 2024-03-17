@@ -15,7 +15,7 @@ import { ShoppingCart, UserIcon } from "lucide-react"
 
 const UserAccountNav = ({ user }: { user: User }) => {
   const { signOut } = useAuth()
-
+  const total = 0
   return (
     <div className="space-x-4">
       <DropdownMenu>
@@ -48,7 +48,10 @@ const UserAccountNav = ({ user }: { user: User }) => {
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
-      <Button variant="outline" size="icon">
+      <Button variant="outline" size="icon" className="relative">
+        <span className="absolute -top-3 -right-3 text-primary-foreground bg-primary w-6 h-6 rounded-full grid place-content-center">
+          {total}
+        </span>
         <ShoppingCart />
       </Button>
     </div>

@@ -7,11 +7,13 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import Image from "next/image"
-import { buttonVariants } from "../ui/button"
+import { Button, buttonVariants } from "../ui/button"
 
 import { Product } from "@/payload-types"
 import ProductPlaceholder from "./ProductPlaceholder"
 import Link from "next/link"
+import { ExternalLink, ShoppingCart } from "lucide-react"
+import { useRouter } from "next/navigation"
 
 interface ProductCardProps {
   product: Product | null
@@ -20,6 +22,7 @@ interface ProductCardProps {
 
 const ProductCard: FC<ProductCardProps> = ({ product, index }) => {
   const [isVisible, setIsVisible] = useState<boolean>(false)
+  const router = useRouter()
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -34,7 +37,7 @@ const ProductCard: FC<ProductCardProps> = ({ product, index }) => {
     .map(({ image }) => (typeof image === "string" ? image : image.url))
     .filter(Boolean) as string[]
   console.log(validURLs)
-
+  console.log(product)
   return (
     <Card>
       <CardHeader className="space-y-4">
@@ -45,7 +48,7 @@ const ProductCard: FC<ProductCardProps> = ({ product, index }) => {
             width={500}
             height={500}
             alt="Product"
-            className="rounded-2xl"
+            className="rounded-2xl h-64 object-cover"
           />
           <span className="absolute top-4 right-4 bg-background px-4 py-2 rounded-3xl font-medium">
             ${product?.price}
@@ -68,19 +71,10 @@ const ProductCard: FC<ProductCardProps> = ({ product, index }) => {
           View Product
         </Link>
 
-        {product.demo && (
-          <Link
-            target="_blank"
-            href={`/product/${product.id}`}
-            className={buttonVariants({
-              size: "lg",
-              variant: "outline",
-              className: "w-full",
-            })}
-          >
-            View Demo
-          </Link>
-        )}
+        <Button size="lg" variant="outline" className="w-full">
+          Add to Cart
+          <ShoppingCart className="ml-2 w-5 h-5" />
+        </Button>
       </CardFooter>
     </Card>
   )
