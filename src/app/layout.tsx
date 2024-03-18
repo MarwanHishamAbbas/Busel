@@ -4,6 +4,7 @@ import Providers from "@/components/provider/Providers"
 import Navbar from "@/components/layout/navbar/Navbar"
 import { Toaster } from "sonner"
 import { Metadata } from "next"
+import Footer from "@/components/layout/Footer"
 const poppins = Poppins({ subsets: ["latin"], weight: ["400", "500", "700"] })
 
 export const metadata: Metadata = {
@@ -21,6 +22,7 @@ export default function RootLayout({
         <Providers>
           <Navbar />
           <main className="mt-20">{children}</main>
+          <Footer />
         </Providers>
         <Toaster position="top-center" richColors />
       </body>

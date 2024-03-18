@@ -1,11 +1,13 @@
 import { FC } from "react"
 import ProductsList from "../product/ProductsList"
+import Link from "next/link"
+import { buttonVariants } from "../ui/button"
 
 interface MostPopularProps {}
 
 const MostPopular: FC<MostPopularProps> = ({}) => {
   return (
-    <section className="container space-y-12">
+    <section className="container space-y-12 text-center">
       <div className="text-center space-y-4">
         <h1 className="text-4xl md:text-5xl font-medium ">
           Most Popular Downloads
@@ -15,6 +17,15 @@ const MostPopular: FC<MostPopularProps> = ({}) => {
         </p>
       </div>
       <ProductsList query={{ category: "UI", limit: 3, sort: "asc" }} />
+      <Link
+        href="/products"
+        className={buttonVariants({
+          size: "lg",
+          variant: "outline",
+        })}
+      >
+        Browse All Products
+      </Link>
     </section>
   )
 }

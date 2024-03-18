@@ -32,21 +32,10 @@ const ProductsList: FC<ProductsListProps> = ({ query }) => {
     map = new Array<null>(query.limit ?? 3).fill(null)
   }
   return (
-    <div className="flex flex-col items-center gap-14">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {map.map((product, idx) => (
-          <ProductCard index={idx} key={idx} product={product} />
-        ))}
-      </div>
-      <Link
-        href="/products"
-        className={buttonVariants({
-          size: "lg",
-          variant: "outline",
-        })}
-      >
-        Browse All Products
-      </Link>
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {map.map((product, idx) => (
+        <ProductCard index={idx} key={idx} product={product} />
+      ))}
     </div>
   )
 }

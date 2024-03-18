@@ -1,7 +1,8 @@
 import { FC } from "react"
-import { Button } from "../ui/button"
+import { Button, buttonVariants } from "../ui/button"
 import { ShoppingBag } from "lucide-react"
 import Image from "next/image"
+import Link from "next/link"
 
 interface HeroCTAProps {}
 
@@ -17,13 +18,19 @@ const HeroCTA: FC<HeroCTAProps> = ({}) => {
           templates to set up your website
         </p>
         <div className="flex flex-col md:flex-row gap-4 justify-center">
-          <Button variant="secondary" size="lg">
+          <Link
+            href="/products"
+            className={buttonVariants({ variant: "secondary", size: "lg" })}
+          >
             <ShoppingBag className="mr-2" />
             Browse Collecitons
-          </Button>
-          <Button variant="outline" size="lg">
+          </Link>
+          <Link
+            href="/about"
+            className={buttonVariants({ variant: "outline", size: "lg" })}
+          >
             About Us
-          </Button>
+          </Link>
         </div>
       </div>
       <Image
