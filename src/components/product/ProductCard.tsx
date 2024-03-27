@@ -1,3 +1,5 @@
+"use client"
+
 import { FC, useEffect, useState } from "react"
 import {
   Card,
@@ -36,8 +38,6 @@ const ProductCard: FC<ProductCardProps> = ({ product, index }) => {
   const validURLs = product.images
     .map(({ image }) => (typeof image === "string" ? image : image.url))
     .filter(Boolean) as string[]
-  console.log(validURLs)
-  console.log(product)
   return (
     <Card>
       <CardHeader className="space-y-4">
@@ -61,7 +61,7 @@ const ProductCard: FC<ProductCardProps> = ({ product, index }) => {
       </CardContent>
       <CardFooter className="gap-4 flex-col xl:flex-row">
         <Link
-          href={`/product/${product.id}`}
+          href={`/products/${product.id}`}
           className={buttonVariants({
             size: "lg",
             variant: "outline",

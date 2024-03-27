@@ -12,7 +12,7 @@ import { useForm } from "react-hook-form"
 import { trpc } from "@/trpc/client"
 import { toast } from "sonner"
 import { ZodError } from "zod"
-import { useRouter } from "next/navigation"
+import { useRouter, useSearchParams } from "next/navigation"
 import { AuthValidator, TAuthValidator } from "@/lib/validators/auth-validator"
 
 const SignInPage = () => {
@@ -23,9 +23,10 @@ const SignInPage = () => {
   } = useForm<TAuthValidator>({
     resolver: zodResolver(AuthValidator),
   })
+  const searchParams = useSearchParams()
 
   const router = useRouter()
-
+  const origin = searchParams.get("origin")
   const { mutate, isLoading } = trpc.auth.signIn.useMutation({
     onError: (err) => {
       if (err.data?.code === "UNAUTHORIZED") {
@@ -43,8 +44,12 @@ const SignInPage = () => {
     },
     onSuccess: () => {
       toast.success(`You succesfully logged in, Welcome back.`)
-      router.push("/")
       router.refresh()
+      if (origin) {
+        router.push(`/${origin}`)
+        return
+      }
+      router.push("/")
     },
   })
 

@@ -12,11 +12,10 @@ import {
 import Link from "next/link"
 import { useAuth } from "@/hooks/use-auth"
 import { UserIcon } from "lucide-react"
-import Cart from "@/components/cart/Cart"
 
 const UserAccountNav = ({ user }: { user: User }) => {
   const { signOut } = useAuth()
-  const total = 0
+
   return (
     <div className="flex items-center  gap-4">
       <DropdownMenu>
@@ -49,8 +48,6 @@ const UserAccountNav = ({ user }: { user: User }) => {
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
-
-      <Cart />
     </div>
   )
 }

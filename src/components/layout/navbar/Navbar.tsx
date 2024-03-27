@@ -6,6 +6,7 @@ import { NavMenu } from "./NavMenu"
 import { getServerSideUser } from "@/lib/payload-utils"
 import { cookies } from "next/headers"
 import UserAccountNav from "./UserAccountNav"
+import Cart from "@/components/cart/Cart"
 
 const Navbar = async ({}) => {
   const nextCookies = cookies()
@@ -27,20 +28,23 @@ const Navbar = async ({}) => {
             </Link>
           ))}
         </ul>
-        {user ? (
-          <UserAccountNav user={user} />
-        ) : (
-          <Link
-            href="/sign-in"
-            className={buttonVariants({
-              size: "lg",
-              className: "hidden lg:flex",
-            })}
-          >
-            Get Started
-            <ArrowRight className="ml-2 w-5 h-5" />
-          </Link>
-        )}
+        <div className="flex items-center gap-0 lg:gap-7">
+          <Cart />
+          {user ? (
+            <UserAccountNav user={user} />
+          ) : (
+            <Link
+              href="/sign-in"
+              className={buttonVariants({
+                size: "lg",
+                className: "hidden lg:flex",
+              })}
+            >
+              Get Started
+              <ArrowRight className="ml-2 w-5 h-5" />
+            </Link>
+          )}
+        </div>
         <div className="lg:hidden">
           <NavMenu />
         </div>

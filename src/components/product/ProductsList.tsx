@@ -2,8 +2,6 @@
 
 import { FC } from "react"
 import ProductCard from "./ProductCard"
-import Link from "next/link"
-import { buttonVariants } from "../ui/button"
 import { trpc } from "@/trpc/client"
 import { TQueryValidator } from "@/lib/validators/query-validator"
 import { Product } from "@/payload-types"
