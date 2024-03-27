@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react"
 
 const ContactBanner = ({}) => {
   return (
-    <section>
+    <section className="pt-0">
       <section className="bg-primary text-primary-foreground container py-10 rounded-3xl flex flex-col md:flex-row items-center justify-between">
         <div className=" space-y-4 ">
           <h1 className="text-4xl md:text-5xl font-medium ">

@@ -4,7 +4,7 @@ import Link from "next/link"
 
 const Showcase = ({}) => {
   return (
-    <section>
+    <section className="pt-0">
       <section className="bg-primary text-primary-foreground container rounded-3xl lg:py-32">
         <div className="text-center space-y-4 lg:w-3/4 mx-auto">
           <h1 className="text-4xl md:text-5xl font-medium ">

@@ -7,7 +7,7 @@ interface MostPopularProps {}
 
 const MostPopular: FC<MostPopularProps> = ({}) => {
   return (
-    <section className="container space-y-12 text-center">
+    <section className="container space-y-12 text-center pt-0">
       <div className="text-center space-y-4">
         <h1 className="text-4xl md:text-5xl font-medium ">
           Most Popular Downloads
