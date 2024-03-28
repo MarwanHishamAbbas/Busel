@@ -16,7 +16,7 @@ const MostPopular: FC<MostPopularProps> = ({}) => {
           Browse through some of my Most Popular Products!
         </p>
       </div>
-      <ProductsList query={{ category: "UI", limit: 3, sort: "asc" }} />
+      <ProductsList query={{ limit: 3, sort: "asc" }} />
       <Link
         href="/products"
         className={buttonVariants({

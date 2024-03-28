@@ -4,6 +4,7 @@ import {
   BeforeChangeHook,
 } from "payload/dist/collections/config/types"
 import { Access, CollectionConfig } from "payload/types"
+import { z } from "zod"
 
 const addUser: BeforeChangeHook<Product> = async ({ req, data }) => {
   const user = req.user
@@ -103,9 +104,26 @@ export const Products: CollectionConfig = {
     },
     {
       name: "description",
-      type: "textarea",
+      type: "text",
       label: "Product details",
     },
+    {
+      name: "overview",
+      type: "textarea",
+      label: "Overview",
+    },
+    {
+      name: "preview",
+      type: "text",
+      label: "Live Preview",
+      validate: (val) => {
+        const linkSchema = z.string().includes("https://")
+        const isLink = linkSchema.safeParse(val)
+        if (isLink.success) return true
+        return "Not a Valid Link - should includes https://"
+      },
+    },
+
     {
       name: "price",
       label: "Price in USD",

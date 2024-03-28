@@ -39,7 +39,7 @@ const ProductCard: FC<ProductCardProps> = ({ product, index }) => {
     .map(({ image }) => (typeof image === "string" ? image : image.url))
     .filter(Boolean) as string[]
   return (
-    <Card>
+    <Card className="h-full flex flex-col justify-between">
       <CardHeader className="space-y-4">
         <div className="relative">
           <Image
@@ -56,31 +56,33 @@ const ProductCard: FC<ProductCardProps> = ({ product, index }) => {
         </div>
         <CardTitle className="font-medium">{product?.name}</CardTitle>
       </CardHeader>
-      <CardContent>
-        <p className="opacity-40">{product?.description}</p>
-      </CardContent>
-      <CardFooter className="gap-4 flex-col xl:flex-row">
-        <Link
-          href={`/products/${product.id}`}
-          className={buttonVariants({
-            size: "lg",
-            variant: "outline",
-            className: "w-full",
-          })}
-        >
-          View Product
-        </Link>
+      <div>
+        <CardContent>
+          <p className="opacity-40">{product?.description}</p>
+        </CardContent>
+        <CardFooter className="gap-4 flex-col xl:flex-row">
+          <Link
+            href={`/products/${product.id}`}
+            className={buttonVariants({
+              size: "lg",
+              variant: "outline",
+              className: "w-full",
+            })}
+          >
+            View Product
+          </Link>
 
-        <Button
-          onClick={() => addItem(product)}
-          size="lg"
-          variant="outline"
-          className="w-full"
-        >
-          Add to Cart
-          <ShoppingCart className="ml-2 w-5 h-5" />
-        </Button>
-      </CardFooter>
+          <Button
+            onClick={() => addItem(product)}
+            size="lg"
+            variant="outline"
+            className="w-full"
+          >
+            Add to Cart
+            <ShoppingCart className="ml-2 w-5 h-5" />
+          </Button>
+        </CardFooter>
+      </div>
     </Card>
   )
 }

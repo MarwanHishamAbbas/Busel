@@ -80,6 +80,7 @@ const Cart = () => {
                     href="/cart"
                     className={buttonVariants({
                       className: "w-full",
+                      size: "lg",
                     })}
                   >
                     Continue to Checkout
